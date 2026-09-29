@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ta Te Ti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/estilos.css">
+</head>
+<body>
+  <main class="hoja">
+    <header>
+      <h1>Ta Te Ti</h1>
+      <p id="modoTxt" class="sub"></p>
+    </header>
+
+    <section class="marcador" aria-label="Marcador">
+      <div class="jug" id="jugX"><span class="nombre" id="nomX"></span><span class="pts" id="ptsX">0</span><small id="fichasX"></small></div>
+      <div class="jug empates"><span class="nombre">Empates</span><span class="pts" id="ptsE">0</span></div>
+      <div class="jug" id="jugO"><span class="nombre" id="nomO"></span><span class="pts" id="ptsO">0</span><small id="fichasO"></small></div>
+    </section>
+
+    <p id="estado" role="status" aria-live="polite"></p>
+    <p id="aviso" class="aviso" aria-live="polite"></p>
+
+    <div class="tablero-wrap">
+      <div id="tablero" role="group" aria-label="Tablero"></div>
+      <svg id="linea" viewBox="0 0 300 300" aria-hidden="true"></svg>
+    </div>
+
+    <div class="acciones">
+      <button id="bNueva" class="primario">Nueva partida</button>
+      <button id="bDeshacer">Deshacer</button>
+      <button id="bAjustes">Ajustes</button>
+      <button id="bReglas">Reglas</button>
+    </div>
+
+    <section class="historial">
+      <h2>Últimas partidas</h2>
+      <ol id="hist"></ol>
+      <button id="bReset" class="chico">Borrar marcador</button>
+    </section>
+  </main>
+
+  <dialog id="dlgAjustes">
+    <form id="fAjustes" method="dialog">
+      <h2>Ajustes</h2>
+      <label>Rival
+        <select name="rival">
+          <option value="humano">Otra persona (mismo dispositivo)</option>
+          <option value="facil">Compu: fácil</option>
+          <option value="medio">Compu: media</option>
+          <option value="dificil">Compu: difícil</option>
+        </select>
+      </label>
+      <label>Modo de juego
+        <select name="modo">
+          <option value="reglamento">Reglamento (3 fichas, después se mueven)</option>
+          <option value="clasico">Clásico (fichas ilimitadas, no se mueven)</option>
+        </select>
+      </label>
+      <label>Movimiento de fichas
+        <select name="diag">
+          <option value="1">A cualquier casilla vecina</option>
+          <option value="0">Solo horizontal y vertical</option>
+        </select>
+      </label>
+      <label>Nombre de X <input name="nombreX" maxlength="14"></label>
+      <label>Nombre de O <input name="nombreO" maxlength="14"></label>
+      <label class="check"><input type="checkbox" name="sonido"> Sonidos</label>
+      <p class="nota">Cambiar rival, modo o movimiento reinicia el marcador.</p>
+      <div class="acciones">
+        <button type="button" id="bCancelar">Cancelar</button>
+        <button type="submit" value="ok" class="primario">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlgReglas">
+    <h2>Reglas</h2>
+    <ul>
+      <li>Juegan dos personas, X y O. Cada una tiene tres fichas iguales.</li>
+      <li>Por turnos, cada jugador coloca una ficha en una casilla vacía.</li>
+      <li>Cuando los dos colocaron sus tres fichas, se turnan para mover una ficha a la casilla vecina más cercana que esté vacía.</li>
+      <li>Gana quien alinea tres fichas iguales en horizontal, vertical o diagonal.</li>
+      <li>Si un jugador no puede mover ninguna ficha, pasa el turno.</li>
+      <li>Si la misma posición se repite tres veces, la partida termina en empate.</li>
+    </ul>
+    <p class="nota">Reglamento basado en el documento «Ta Te Ti – Juego Responsable» del IAFAS.</p>
+    <div class="acciones"><button id="bCerrarReglas" class="primario">Entendido</button></div>
+  </dialog>
+
+  <noscript>Este juego necesita JavaScript.</noscript>
+  <script src="../JS/juego.js"></script>
+  <script src="../JS/ia.js"></script>
+  <script src="../JS/sonido.js"></script>
+  <script src="../JS/main.js"></script>
+</body>
+</html>
